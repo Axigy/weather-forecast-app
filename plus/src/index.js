@@ -86,7 +86,15 @@ if (minuts < 10) {
   minuts = `0${minuts}`;
 }
 let currentDate = document.querySelector("#now-date");
-currentDate.innerHTML = `${day}, ${month} ${date}, ${hour}:${minuts} `;
+currentDate.innerHTML = `${day}, ${month} ${date}`;
+let secondDate = document.querySelector("#tommorow-date");
+secondDate.innerHTML = `${days[now.getDay() + 1]}, ${month} ${
+  now.getDate() + 1
+}`;
+let thirdDate = document.querySelector("#three-date");
+thirdDate.innerHTML = `${days[now.getDay() + 2]}, ${month} ${
+  now.getDate() + 2
+}`;
 
 // Switch metrics
 

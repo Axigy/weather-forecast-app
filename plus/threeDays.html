@@ -62,12 +62,12 @@
       </div>
 
       <section class="main_table">
-        <h1 class="city" id="main-location">Write your location</h1>
+        <h1 class="city" id="main-location"></h1>
         <span class="country" id="country-id"></span>
         
         <div class="card-deck three_table" id="three_days_table">
           <div class="card border-secondary mb-3" style="max-width: 18rem">
-            <div class="card-header">Monday</div>
+            <div class="card-header" id="now-date">Monday</div>
             <div class="card-body text-secondary">
               <h5 class="card-title">20°C / 27°C</h5>
               <img
@@ -83,8 +83,8 @@
           </div>
         
           <div class="card border-secondary mb-3" style="max-width: 18rem">
-            <div class="card-header">Tuesday</div>
-            <div class="card-body text-secondary">
+            <div class="card-header" id="tommorow-date">Tuesday</div>
+            <div class="card-body text-secondary" >
               <h5 class="card-title">20°C / 27°C</h5>
               <img
                 src="image/50d.svg"
@@ -99,7 +99,7 @@
           </div>
         
           <div class="card border-secondary mb-3" style="max-width: 18rem">
-            <div class="card-header">Wednesday</div>
+            <div class="card-header" id="three-date">Wednesday</div>
             <div class="card-body text-secondary">
               <h5 class="card-title">20°C / 27°C</h5>
               <img src="image/50d.svg" alt="" class="weather_icon" />
