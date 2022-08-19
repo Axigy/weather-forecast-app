@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border: 1px solid #71ac98;
+        z-index: 2;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 13px;
+        width: 13px;
+        left: 3px;
+        bottom: 2px;
+        background-color: #71ac98;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+      input:checked + .slider:before {
+        -webkit-transform: translateX(16px);
+        -ms-transform: translateX(16px);
+        transform: translateX(16px);
+      }
+
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+
+      .switcher {
+        display: flex;
+        align-items: center;
+      }
+
+      .switcher-degrees {
+        background: none;
+        outline: none;
+        border: none;
+        color: #385170;
+        font-size: 18px;
+        line-height: 24px;
+        margin-top: -4px;
+      }
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 36px;
+        height: 19px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="switcher">
+      <button class="switcher-degrees">°C</button>
+      <label class="switch">
+        <input type="checkbox" id="degrees-switch" />
+        <span class="slider round"></span>
+      </label>
+      <button class="switcher-degrees">°F</button>
+    </div>
+    <script>
+      function changeMetr(event) {
+        event.preventDefault();
+        let degrees = document.querySelector("#morning-temp");
+        let currentTemp = Number(degrees);
+        if (currentMetric === "°C") {
+          let toFrg = currentTemp * 1.8 + 32;
+          console.log(toFrg);
+          degrees.innerHTML = toFrg;
+          currentMetric = "°F";
+        } else {
+          let toCel = (currentTemp - 32) * 1.8;
+          degrees.innerHTML = toCel;
+          currentMetric = "°C";
+        }
+      }
+      let currentMetric = "°C";
+      let activeMetr = document.querySelector("#degrees-switch");
+      activeMetr.addEventListener("change", changeMetr);
+    </script>
+  </body>
+</html>
+
+
+
+<div class="card-deck three_table" id="three_days_table">
+  <div class="card border-secondary mb-3" style="max-width: 18rem">
+    <div class="card-header">Monday</div>
+    <div class="card-body text-secondary">
+      <h5 class="card-title">20°C / 27°C</h5>
+      <img
+        src="image/cloudy-day-1.svg"
+        alt="cloudy day"
+        class="weather_icon"
+      />
+      <p class="card-text">
+        Wind: 6 km/h <br />
+        Humidity: 40%
+      </p>
+    </div>
+  </div>
+
+  <div class="card border-secondary mb-3" style="max-width: 18rem">
+    <div class="card-header">Tuesday</div>
+    <div class="card-body text-secondary">
+      <h5 class="card-title">20°C / 27°C</h5>
+      <img
+        src="image/day.svg"
+        alt="sunny day"
+        class="weather_icon"
+      />
+      <p class="card-text">
+        Wind: 6 km/h <br />
+        Humidity: 40%
+      </p>
+    </div>
+  </div>
+
+  <div class="card border-secondary mb-3" style="max-width: 18rem">
+    <div class="card-header">Wednesday</div>
+    <div class="card-body text-secondary">
+      <h5 class="card-title">20°C / 27°C</h5>
+      <img src="image/thunder.svg" alt="" class="weather_icon" />
+      <p class="card-text">
+        Wind: 6 km/h <br />
+        Humidity: 40%
+      </p>
+    </div>
+  </div>
+
+  
+  </div>
+</div>
+</div>
+
+</div>  

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <title>Weather Forecast</title>
+  </head>
+  <body>
+    <section class="attic">
+       <a href="#" id="change-to-celsius"> °C </a> <a href="#" id="change-to-fahrenheit"> °F </a>
+       <a href="#" id="location-btn"><img src="image/navigation_direction_icon.png" alt="geolocation" id="current-location" ></a>
+    </section>
+
+    <div class="container">
+      <form class="search_form" id="search-city-form">
+        <input
+          type="text"
+          placeholder="Enter your city"
+          style="width: 70%"
+          id="input-city"
+        />
+        <input type="submit" value="Search" class="search_button" />
+      </form>
+
+      <div
+        class="btn-group change_days"
+        role="group"
+        aria-label="Basic outlined example"
+      >
+        <a href="index.html" class="btn btn-outline-primary active" >
+          Today
+        </a>
+        <a
+          href="threeDays.html"
+          class="btn btn-outline-primary"
+        >
+          3 days
+        </a>
+        <a
+          href="sixDays.html"
+          class="btn btn-outline-primary"
+        >
+          6 days
+        </a>
+        
+      </div>
+
+      <section class="main_table">
+        <h1 class="city" id="main-location">Write your location</h1>
+        <span class="country" id="country-id"></span>
+        
+        <div class="today-forecast" id="today-table">
+          <div class="card border-secondary mb-6">
+            <div class="card-header" id="now-date">Wednesday</div>
+            <div class="card-body text-secondary">
+              <h5 class="card-title currentTemp" >
+                <span id="temp-value">0</span>
+                <span class="degreesIcon">°C</span>
+              </h5>
+              
+              <p class="card-text">
+                Wind: <span id="wind-speed">6</span> m/sec <br />
+                Humidity: <span id="humidity">40</span>%
+              </p>
+              
+              <ul class="todayTable">
+                <img src="image/50d.svg" alt="" class="weather_icon currentIcon" width="100px" height="100px"/>
+                <li>
+                  max temp <span id="max-temp">0</span> °C
+                </li>
+                <li>
+                  min temp <span id="min-temp">0</span> °C
+                </li>
+              </ul>
+            </div>
+
+            
+            </div>
+          </div>
+        </div>
+        
+        </div>  
+      </section>
+      <footer>
+        <p class="footer-text">Open-source project by Axigy</p>
+        <a href="https://github.com/Axigy" target="_blank" ">
+          <img src="image/blue_github_icon.png" alt="github-icon" class="social-icon">
+        </a>
+        <a href="https://www.linkedin.com/in/anhelina-kruptseva/" target="_blank"><img src="image/linkedin_social_icon.png" alt="linkedin-icon" class="social-icon"></a>
+      </footer>
+      
+    </div>
+
+    <script src="src/index.js"></script>
+  </body>
+</html>
