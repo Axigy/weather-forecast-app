@@ -9,6 +9,7 @@ body {
   display: flex;
   margin: 14px;
   right: 70%;
+  width: 100px;
 }
 
 #change-to-celsius,
@@ -22,12 +23,15 @@ body {
   padding: 4px 10px;
   line-height: 2;
   margin: 0 4px;
+  transition: all 200ms ease-in-out;
+  text-decoration: none;
 }
 #change-to-celsius.active,
 #change-to-fahrenheit.active {
   background-color: #71ac98;
   border-color: #71ac98;
   color: #ececec;
+  text-decoration: none;
 }
 
 #current-location {

@@ -5,6 +5,7 @@ function giveDates(response) {
   celsiusTemperature = response.data.main.temp;
   let nowTemp = document.querySelector("#temp-value");
   nowTemp.innerHTML = Math.round(response.data.main.temp);
+
   // write full location
   let currLocation = document.querySelector("#main-location");
   currLocation.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
