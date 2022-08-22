@@ -110,7 +110,7 @@ h5,
 .card-title.currentTemp {
   text-align: left;
   font-size: 24px;
-  margin-top: 24px;
+  margin-top: 20px;
 }
 .card-header {
   background-color: rgb(113, 172, 152, 0.1);
@@ -118,13 +118,7 @@ h5,
   box-shadow: 2px 9px 11px 3px rgba(56, 81, 112, 0.05);
 }
 .todayTable {
-  margin: 0 4px;
-  text-align: right;
   list-style: none;
-  display: block;
-  position: absolute;
-  top: 54px;
-  right: 12px;
   color: #385170;
 }
 .card-text {
@@ -134,7 +128,6 @@ h5,
   color: #385170;
 }
 .weather_icon {
-  margin: 13px 0;
 }
 
 .footer-text {
