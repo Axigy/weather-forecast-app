@@ -2,7 +2,7 @@
 function giveDates(response) {
   console.log(response);
   // main temperature
-  celsiusTemperature = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
   let nowTemp = document.querySelector("#temp-value");
   nowTemp.innerHTML = Math.round(response.data.main.temp);
   // write full location

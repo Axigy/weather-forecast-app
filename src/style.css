@@ -23,6 +23,13 @@ body {
   line-height: 2;
   margin: 0 4px;
 }
+#change-to-celsius.active,
+#change-to-fahrenheit.active {
+  background-color: #71ac98;
+  border-color: #71ac98;
+  color: #ececec;
+}
+
 #current-location {
   width: 40px;
   margin-left: 36px;
@@ -124,6 +131,7 @@ h5,
   color: #71ac98;
 }
 .card-text {
+  text-align: left;
   margin: 32px 0;
   float: left;
   font-size: 16px;
