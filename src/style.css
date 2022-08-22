@@ -127,18 +127,14 @@ h5,
   font-size: 16px;
   color: #385170;
 }
-.weather_icon {
-}
 
 .footer-text {
   color: #71ac98;
-  font-size: small;
   opacity: 0.9;
   text-decoration: none;
-  margin-bottom: 4px;
 }
 
 .social-icon {
-  width: 40px;
+  width: 36px;
   padding: 0 4px;
 }
