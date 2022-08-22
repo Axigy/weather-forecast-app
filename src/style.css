@@ -32,6 +32,7 @@ body {
   border-color: #71ac98;
   color: #ececec;
   text-decoration: none;
+  cursor: pointer;
 }
 
 #current-location {
