@@ -2,6 +2,7 @@
 function giveDates(response) {
   console.log(response);
   // main temperature
+  celsiusTemperature = Math.round(response.data.main.temp);
   let nowTemp = document.querySelector("#temp-value");
   nowTemp.innerHTML = Math.round(response.data.main.temp);
   // write full location
@@ -87,19 +88,11 @@ if (minuts < 10) {
 }
 let currentDate = document.querySelector("#now-date");
 currentDate.innerHTML = `${day}, ${month} ${date}`;
-let secondDate = document.querySelector("#tommorow-date");
-secondDate.innerHTML = `${days[now.getDay() + 1]}, ${month} ${
-  now.getDate() + 1
-}`;
-let thirdDate = document.querySelector("#three-date");
-thirdDate.innerHTML = `${days[now.getDay() + 2]}, ${month} ${
-  now.getDate() + 2
-}`;
 
 // Switch metrics
 
-function displayFahrenheit(event) {
-  event.preventDefault();
+function displayFahrenheit(e) {
+  e.preventDefault();
   let temperatureElement = document.querySelector("#temp-value");
   let celIcon = document.querySelector(".degreesIcon");
   toCelBtn.classList.remove("active");
@@ -109,8 +102,8 @@ function displayFahrenheit(event) {
   celIcon.innerHTML = "°F";
 }
 
-function displayCelsius(event) {
-  event.preventDefault();
+function displayCelsius(e) {
+  e.preventDefault();
   toCelBtn.classList.add("active");
   toFahrBtn.classList.remove("active");
   let fahIcon = document.querySelector(".degreesIcon");
@@ -119,7 +112,7 @@ function displayCelsius(event) {
   fahIcon.innerHTML = "°C";
 }
 
-let celsiusTemperature = document.querySelector("#temp-value").innerHTML;
+let celsiusTemperature = null;
 let toCelBtn = document.querySelector("#change-to-celsius");
 let toFahrBtn = document.querySelector("#change-to-fahrenheit");
 
