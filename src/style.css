@@ -4,11 +4,18 @@ body {
   font-family: "Cinzel", serif;
   text-align: center;
 }
+
+.container {
+  margin: 24px auto;
+  border-radius: 8px;
+  padding: 16px;
+  width: 760px;
+}
 .attic {
-  position: absolute;
-  display: flex;
-  margin: 14px;
-  right: 70%;
+  position: sticky;
+  display: inline-flex;
+  margin: 0;
+  float: left;
   width: 100px;
 }
 
@@ -16,11 +23,11 @@ body {
 #change-to-fahrenheit {
   color: #ececec;
   font-weight: 700;
-  padding: 4px;
+  font-size: 16px;
   border: 1px solid #385170;
   border-radius: 8px;
   background-color: #385170;
-  padding: 4px 10px;
+  padding: 2px 6px;
   line-height: 2;
   margin: 0 4px;
   transition: all 200ms ease-in-out;
@@ -32,18 +39,10 @@ body {
   border-color: #71ac98;
   color: #ececec;
   text-decoration: none;
-  cursor: pointer;
 }
-
 #current-location {
   width: 40px;
   margin-left: 36px;
-}
-.container {
-  margin: 24px auto;
-  border-radius: 8px;
-  padding: 16px;
-  width: 600px;
 }
 .search_form {
   margin: 0 auto;
@@ -75,7 +74,7 @@ body {
 .btn-outline-primary {
   border-color: #71ac98;
   color: #71ac98;
-  right: 0;
+  right: 50px;
   transition: all 200ms ease-in-out;
 }
 .btn.btn-outline-primary.active {
@@ -86,7 +85,7 @@ body {
 .btn-outline-primary:hover {
   background-color: #71ac98;
   color: #ececec;
-  border-color: #385170;
+  border-color: #71ac98;
 }
 h1,
 h2,
