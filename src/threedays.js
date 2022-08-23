@@ -1,18 +1,45 @@
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Monday", "Tuesday", "Wednesday"];
+  let forecastHTML = "";
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="card border-secondary mb-3" style="max-width: 18rem">
+      <div class="card-header weather-date" id="now-date">${day}</div>
+        <div class="card-body text-secondary">
+      <h5 class="card-title">
+        <span class="min-weather-forecast-temp">20</span>
+       <span class="degreesIcon">°C</span>
+        /
+        <span class="max-weather-forecast-temp">27</span>
+         <span class="degreesIcon">°C</span>
+      </h5>
+      <img
+        src="image/50d.svg"
+        alt="cloudy day"
+        class="weather_icon"
+      />
+      <p class="card-text">
+        Wind: 6 km/h <br />
+        Humidity: 40%
+      </p>
+    </div>
+    </div>
+  `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+displayForecast();
+
 // changing Celsius and Fahrenheit
 function displayFahrenheit(e) {
   e.preventDefault();
-  let temperatureElement = document.querySelector("#temp-value");
   let celIcons = document.querySelectorAll(".degreesIcon");
-  let maxTemp = document.querySelector("#max-temp");
-  let minTemp = document.querySelector("#min-temp");
   toCelBtn.classList.remove("active");
   toFahrBtn.classList.add("active");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  let fahrMinTemp = (minCelsiusTemoerature * 9) / 5 + 32;
-  let fahrMaxTemp = (maxCelsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-  maxTemp.innerHTML = Math.round(fahrMaxTemp);
-  minTemp.innerHTML = Math.round(fahrMinTemp);
   Array.from(celIcons).forEach((celIcon) => {
     celIcon.innerHTML = "°F";
   });
@@ -23,12 +50,6 @@ function displayCelsius(e) {
   toCelBtn.classList.add("active");
   toFahrBtn.classList.remove("active");
   let fahIcons = document.querySelectorAll(".degreesIcon");
-  let maxTemp = document.querySelector("#max-temp");
-  let minTemp = document.querySelector("#min-temp");
-  let temperatureElement = document.querySelector("#temp-value");
-  maxTemp.innerHTML = Math.round(maxCelsiusTemperature);
-  minTemp.innerHTML = Math.round(minCelsiusTemoerature);
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   Array.from(fahIcons).forEach((fahIcon) => {
     fahIcon.innerHTML = "°C";
   });
