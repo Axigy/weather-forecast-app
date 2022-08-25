@@ -51,9 +51,9 @@ function givesHourlyForecast(response) {
         hoursForecastHTML +
         ` <li>
       <span class="time">${formatHours(hour.dt)}</span> 
-      <span class="temp-min">${Math.round(
-        hour.main.temp_min
-      )}</span><span class="degrees">°C</span> /
+      <img src="image/${
+        hour.weather[0].icon
+      }.svg" alt="" class="weatherIcon" width="30px" height="30px" />
       <span class="temp-max">${Math.round(
         hour.main.temp_max
       )}</span></span><span class="degrees">°C</span>

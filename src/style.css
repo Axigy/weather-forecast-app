@@ -123,7 +123,6 @@ h5,
   text-align: center;
 }
 .currentTemp {
-  float: left;
   font-size: 24px;
   margin-top: 16px;
 }
@@ -168,11 +167,6 @@ li {
   padding: 0 8px;
 }
 
-.temp-min {
-  opacity: 0.6;
-  font-weight: 700;
-  color: #385170;
-}
 .temp-max {
   font-weight: 700;
   color: #385170;
