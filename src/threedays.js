@@ -39,7 +39,7 @@ function giveDates(response) {
 }
 
 let keyApi = "920ae924ef286b04c010bf50d5e7861f";
-let urlUpi = `https://api.openweathermap.org/data/2.5/forecast?q=Poznan&&appid=${keyApi}&units=metric`;
+let urlUpi = `https:https://api.openweathermap.org/data/2.5/onecall?q=Poznan&&appid=${keyApi}&units=metric`;
 
 axios.get(`${urlUpi}`).then(giveDates);
 
@@ -51,8 +51,8 @@ function giveDates(response) {
 function showPosition(position) {
   console.log(position);
   let keyApi = "920ae924ef286b04c010bf50d5e7861f";
-  let urlUpi = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&&appid=${keyApi}&units=metric`;
-
+  let urlUpi = `https:https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&&appid=${keyApi}&units=metric`;
+  console.log(urlUpi);
   axios.get(`${urlUpi}`).then(giveDates);
 }
 function getCurrentPosition() {
