@@ -1,15 +1,19 @@
 body {
-  background-image: url("../image/leaves_background.jpg");
-  background-size: cover;
   font-family: "Cinzel", serif;
   text-align: center;
+  background-color: #ececec;
+  background-image: url("../image/leaves_background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: rgba(113, 172, 152, 0.4);
 }
 
 .container {
   margin: 24px auto;
   border-radius: 8px;
   padding: 16px;
-  width: 760px;
+  width: 800px;
 }
 .attic {
   position: sticky;
@@ -67,7 +71,7 @@ body {
   margin: 24px auto;
 }
 .today-forecast {
-  width: 400px;
+  width: 600px;
   margin: 0 auto;
 }
 .btn-outline-primary {
@@ -148,6 +152,30 @@ h5,
   font-weight: 700;
   color: #385170;
   opacity: 0.8;
+}
+
+.hourlyForecastTable,
+li {
+  list-style-type: none;
+  margin: 0;
+  line-height: 2rem;
+  padding: 0;
+}
+
+.time {
+  color: #71ac98;
+  font-weight: 700;
+  padding: 0 8px;
+}
+
+.temp-min {
+  opacity: 0.6;
+  font-weight: 700;
+  color: #385170;
+}
+.temp-max {
+  font-weight: 700;
+  color: #385170;
 }
 
 .footer-text {

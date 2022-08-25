@@ -33,13 +33,27 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 displayForecast();
+// Add API
+function giveDates(response) {
+  console.log(response);
+}
+
+let keyApi = "920ae924ef286b04c010bf50d5e7861f";
+let urlUpi = `https://api.openweathermap.org/data/2.5/forecast?q=Poznan&&appid=${keyApi}&units=metric`;
+
+axios.get(`${urlUpi}`).then(giveDates);
 
 // Add current location and change data
+function giveDates(response) {
+  console.log(response);
+}
 
 function showPosition(position) {
-  let keyApi = "920ae924ef286b04c010bf50d5e7861f"; // add API
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&APPID=`;
-  axios.get(`${apiUrl}${keyApi}`).then(giveDates);
+  console.log(position);
+  let keyApi = "920ae924ef286b04c010bf50d5e7861f";
+  let urlUpi = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&&appid=${keyApi}&units=metric`;
+
+  axios.get(`${urlUpi}`).then(giveDates);
 }
 function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);

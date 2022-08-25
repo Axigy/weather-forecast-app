@@ -1,6 +1,5 @@
 // Search city form
 function giveDates(response) {
-  console.log(response);
   // main temperature
   minCelsiusTemoerature = response.data.main.temp_min;
   maxCelsiusTemperature = response.data.main.temp_max;
@@ -26,6 +25,46 @@ function giveDates(response) {
   minTemp.innerHTML = Math.round(response.data.main.temp_min);
 }
 
+function formatHours(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let hour = date.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  let minuts = date.getMinutes();
+  if (minuts < 10) {
+    minuts = `0${minuts}`;
+  }
+  let time = `${hour}:${minuts}`;
+
+  return time;
+}
+
+function givesHourlyForecast(response) {
+  let hourlyForecastElement = document.querySelector("#hourly-forecast");
+  let hoursForecast = response.data.list;
+  let hoursForecastHTML = `<ul class="hourlyForecastTable">`;
+  console.log(hoursForecast);
+  hoursForecast.forEach(function (hour, index) {
+    if (index < 5) {
+      hoursForecastHTML =
+        hoursForecastHTML +
+        ` <li>
+      <span class="time">${formatHours(hour.dt)}</span> 
+      <span class="temp-min">${Math.round(
+        hour.main.temp_min
+      )}</span><span class="degrees">°C</span> /
+      <span class="temp-max">${Math.round(
+        hour.main.temp_max
+      )}</span></span><span class="degrees">°C</span>
+      </li>
+      `;
+    }
+  });
+  hoursForecastHTML = hoursForecastHTML + `</ul>`;
+  hourlyForecastElement.innerHTML = hoursForecastHTML;
+}
+
 function searchCity(event) {
   event.preventDefault();
   let city = document.querySelector("#input-city");
@@ -33,7 +72,9 @@ function searchCity(event) {
   mainLoc.innerHTML = `${city.value}`;
   let apiKey = "920ae924ef286b04c010bf50d5e7861f"; // add API
   let urlApi = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&APPID=`;
+  let hourlyApi = `https://api.openweathermap.org/data/2.5/forecast?q=${city.value}&units=metric&appid=`;
 
+  axios.get(`${hourlyApi}${apiKey}`).then(givesHourlyForecast);
   axios.get(`${urlApi}${apiKey}`).then(giveDates);
 }
 let search_form = document.querySelector("#search-city-form");
@@ -42,10 +83,13 @@ search_form.addEventListener("submit", searchCity);
 let city = document.querySelector("#input-city");
 let mainLoc = document.querySelector("#main-location");
 mainLoc.innerHTML = `${city.value}`;
-let apiKey = "920ae924ef286b04c010bf50d5e7861f"; // add API
-let urlApi = `https://api.openweathermap.org/data/2.5/weather?q=Poznan&units=metric&APPID=`;
+const apiKey = "920ae924ef286b04c010bf50d5e7861f"; // add API
+const urlApi = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&APPID=`;
+const hourlyApi = `https://api.openweathermap.org/data/2.5/forecast?q=${city.value}&units=metric&appid=`;
 
 axios.get(`${urlApi}${apiKey}`).then(giveDates);
+axios.get(`${hourlyApi}${apiKey}`).then(givesHourlyForecast);
+
 // Add current location and change data
 
 function showPosition(position) {
@@ -91,6 +135,8 @@ if (minuts < 10) {
 }
 let currentDate = document.querySelector("#now-date");
 currentDate.innerHTML = `${day}, ${month} ${date}`;
+
+// Hourly forecast
 
 // Switch metrics
 
