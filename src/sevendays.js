@@ -11,6 +11,9 @@ function formatHours(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = days[date.getDay()];
   let number = date.getDate();
+  if (number < 10) {
+    number = `0${number}`;
+  }
 
   let currentDay = `${day}, ${number}`;
 
@@ -22,43 +25,42 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = "";
 
-  forecastData.forEach(function (data, index) {
-    if (index < 3) {
-      minCelsiusTemperature.push(data.temp.min);
-      maxCelsiusTemperature.push(data.temp.max);
-      forecastHTML =
-        forecastHTML +
-        `<div class="card border-secondary mb-3" style="max-width: 18rem">
-      <div class="card-header weather-date" id="now-date">${formatHours(
-        data.dt
-      )}</div>
-        <div class="card-body text-secondary">
-      <h5 class="card-title">
-        <span class="min-weather-forecast-temp">${Math.round(
-          data.temp.min
-        )}</span>
-       <span class="degreesIcon">°C</span>
-        /
-        <span class="max-weather-forecast-temp">${Math.round(
-          data.temp.max
-        )}</span>
+  forecastData.forEach(function (data) {
+    minCelsiusTemperature.push(data.temp.min);
+    maxCelsiusTemperature.push(data.temp.max);
+    forecastHTML =
+      forecastHTML +
+      `<div class="card" style="max-width: 10rem">
+        <div class="card-header weather-date" id="now-date">${formatHours(
+          data.dt
+        )}</div>
+          <div class="card-body text-secondary">
+        <h5 class="card-title-seven">
+          <span class="min-weather-forecast-temp">${Math.round(
+            data.temp.min
+          )}</span>
          <span class="degreesIcon">°C</span>
-      </h5>
-      <img
-        src="image/${data.weather[0].icon}.svg"
-        alt="cloudy day"
-        class="weather_icon"
-      />
-      <p class="card-text">
-        Wind: <span id="wind-speed">${Math.round(
-          data.wind_speed
-        )}</span> m/H <br />
-        Humidity: <span id="humidity">${data.humidity}</span>%
-      </p>
-    </div>
-    </div>
-  `;
-    }
+          /
+          <span class="max-weather-forecast-temp">${Math.round(
+            data.temp.max
+          )}</span>
+           <span class="degreesIcon">°C</span>
+        </h5>
+        <img
+          src="image/${data.weather[0].icon}.svg"
+          alt="cloudy day"
+          class="weather_icon"
+          width="30px" height="30px"
+        />
+        <p class="card-text">
+          Wind: <span id="wind-speed">${Math.round(
+            data.wind_speed
+          )}</span> m/H <br />
+          Humidity: <span id="humidity">${data.humidity}</span>%
+        </p>
+      </div>
+      </div>
+    `;
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -71,7 +73,6 @@ let urlApi = `https://api.openweathermap.org/data/2.5/onecall?lat=50.413568&lon=
 axios.get(`${urlApi}`).then(displayForecast);
 // search
 function giveDates(response) {
-  console.log(response);
   let currLocation = document.querySelector("#main-location");
   currLocation.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   geoloc = `lat=${response.data.coord.lat}&lon=${response.data.coord.lon}`;

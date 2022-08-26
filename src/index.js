@@ -190,7 +190,6 @@ function displayCelsius(e) {
     fahIcon.innerHTML = "°C";
   });
   let hourlyElement = Array.from(document.querySelectorAll(".temp-max"));
-  console.log(hourlyElement);
   hourlyElement.forEach((temperature, index) => {
     temperature.innerHTML = Math.round(hourlyTemp[index]);
   });

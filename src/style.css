@@ -15,6 +15,12 @@ body {
   padding: 16px;
   width: 800px;
 }
+.containerSeven {
+  margin: 24px auto;
+  border-radius: 8px;
+  padding: 16px;
+  width: 1000px;
+}
 .attic {
   position: sticky;
   display: inline-flex;
@@ -70,6 +76,7 @@ body {
 .change_days {
   margin: 24px auto;
 }
+
 .today-forecast {
   width: 600px;
   margin: 0 auto;
