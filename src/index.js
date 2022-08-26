@@ -141,7 +141,7 @@ if (minuts < 10) {
   minuts = `0${minuts}`;
 }
 let currentDate = document.querySelector("#now-date");
-currentDate.innerHTML = `${day}, ${month} ${date}`;
+currentDate.innerHTML = `${day}, ${month} ${date}, ${hour}:${minuts}`;
 
 // Hourly forecast
 
