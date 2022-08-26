@@ -1,59 +1,104 @@
-function displayForecast() {
+function formatHours(timestamp) {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thusday",
+    "Friday",
+    "Saturday",
+  ];
+  let date = new Date(timestamp * 1000);
+  let day = days[date.getDay()];
+  let number = date.getDate();
+
+  let currentDay = `${day}, ${number}`;
+
+  return currentDay;
+}
+
+function displayForecast(response) {
+  let forecastData = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
-  let days = ["Monday", "Tuesday", "Wednesday"];
   let forecastHTML = "";
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="card border-secondary mb-3" style="max-width: 18rem">
-      <div class="card-header weather-date" id="now-date">${day}</div>
+  forecastData.forEach(function (data, index) {
+    if (index < 3) {
+      minCelsiusTemperature.push(data.temp.min);
+      maxCelsiusTemperature.push(data.temp.max);
+      forecastHTML =
+        forecastHTML +
+        `<div class="card border-secondary mb-3" style="max-width: 18rem">
+      <div class="card-header weather-date" id="now-date">${formatHours(
+        data.dt
+      )}</div>
         <div class="card-body text-secondary">
       <h5 class="card-title">
-        <span class="min-weather-forecast-temp">20</span>
+        <span class="min-weather-forecast-temp">${Math.round(
+          data.temp.min
+        )}</span>
        <span class="degreesIcon">°C</span>
         /
-        <span class="max-weather-forecast-temp">27</span>
+        <span class="max-weather-forecast-temp">${Math.round(
+          data.temp.max
+        )}</span>
          <span class="degreesIcon">°C</span>
       </h5>
       <img
-        src="image/50d.svg"
+        src="image/${data.weather[0].icon}.svg"
         alt="cloudy day"
         class="weather_icon"
       />
       <p class="card-text">
-        Wind: 6 km/h <br />
-        Humidity: 40%
+        Wind: <span id="wind-speed">${Math.round(
+          data.wind_speed
+        )}</span> km/H <br />
+        Humidity: <span id="humidity">${data.humidity}</span>%
       </p>
     </div>
     </div>
   `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
-displayForecast();
+
 // Add API
+let keyApi = "a43564c91a6c605aeb564c9ed02e3858";
+let urlApi = `https://api.openweathermap.org/data/2.5/onecall?lat=50.413568&lon=30.6479104&units=metric&appid=${keyApi}`;
+
+axios.get(`${urlApi}`).then(displayForecast);
+// search
 function giveDates(response) {
   console.log(response);
+  let currLocation = document.querySelector("#main-location");
+  currLocation.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+  geoloc = `lat=${response.data.coord.lat}&lon=${response.data.coord.lon}`;
+  let keyApi = "a43564c91a6c605aeb564c9ed02e3858";
+  let urlApi = `https://api.openweathermap.org/data/2.5/onecall?${geoloc}&units=metric&appid=${keyApi}`;
+  axios.get(`${urlApi}`).then(displayForecast);
 }
 
-let keyApi = "920ae924ef286b04c010bf50d5e7861f";
-let urlUpi = `https:https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&&appid=${keyApi}&units=metric`;
+function searchCity(event) {
+  event.preventDefault();
+  let city = document.querySelector("#input-city");
+  let mainLoc = document.querySelector("#main-location");
+  mainLoc.innerHTML = `${city.value}`;
+  let apiKey = "920ae924ef286b04c010bf50d5e7861f"; // add API
+  let urlApi = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&APPID=`;
 
-axios.get(`${urlUpi}`).then(giveDates);
+  axios.get(`${urlApi}${apiKey}`).then(giveDates);
+}
+let search_form = document.querySelector("#search-city-form");
+search_form.addEventListener("submit", searchCity);
 
 // Add current location and change data
-function giveDates(response) {
-  console.log(response);
-}
 
 function showPosition(position) {
-  console.log(position);
-  let keyApi = "920ae924ef286b04c010bf50d5e7861f";
-  let urlUpi = `https:https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&&appid=${keyApi}&units=metric`;
-  console.log(urlUpi);
-  axios.get(`${urlUpi}`).then(giveDates);
+  let keyApi = "a43564c91a6c605aeb564c9ed02e3858";
+  let urlApi = `https:https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=`;
+  axios.get(`${urlApi}${keyApi}`).then(displayForecast);
 }
 function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);
@@ -70,6 +115,18 @@ function displayFahrenheit(e) {
   Array.from(celIcons).forEach((celIcon) => {
     celIcon.innerHTML = "°F";
   });
+  let minTempElement = document.querySelectorAll(".min-weather-forecast-temp");
+  Array.from(minTempElement).forEach((minTempDegree, index) => {
+    minTempDegree.innerHTML = Math.round(
+      (minCelsiusTemperature[index] * 9) / 5 + 32
+    );
+  });
+  let maxTempElement = document.querySelectorAll(".max-weather-forecast-temp");
+  Array.from(maxTempElement).forEach((maxTempDegree, index) => {
+    maxTempDegree.innerHTML = Math.round(
+      (maxCelsiusTemperature[index] * 9) / 5 + 32
+    );
+  });
 }
 
 function displayCelsius(e) {
@@ -80,11 +137,18 @@ function displayCelsius(e) {
   Array.from(fahIcons).forEach((fahIcon) => {
     fahIcon.innerHTML = "°C";
   });
+  let minTempElement = document.querySelectorAll(".min-weather-forecast-temp");
+  Array.from(minTempElement).forEach((minTempDegree, index) => {
+    minTempDegree.innerHTML = Math.round(minCelsiusTemperature[index]);
+  });
+  let maxTempElement = document.querySelectorAll(".max-weather-forecast-temp");
+  Array.from(maxTempElement).forEach((maxTempDegree, index) => {
+    maxTempDegree.innerHTML = Math.round(maxCelsiusTemperature[index]);
+  });
 }
 
-let minCelsiusTemoerature = null;
-let maxCelsiusTemperature = null;
-let celsiusTemperature = null;
+let minCelsiusTemperature = [];
+let maxCelsiusTemperature = [];
 let toCelBtn = document.querySelector("#change-to-celsius");
 let toFahrBtn = document.querySelector("#change-to-fahrenheit");
 

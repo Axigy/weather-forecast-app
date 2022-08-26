@@ -167,9 +167,10 @@ li {
   padding: 0 8px;
 }
 
-.temp-max {
+.temperature {
   font-weight: 700;
   color: #385170;
+  opacity: 0.8;
 }
 
 .footer-text {
