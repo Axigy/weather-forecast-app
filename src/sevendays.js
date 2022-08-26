@@ -50,7 +50,7 @@ function displayForecast(response) {
           src="image/${data.weather[0].icon}.svg"
           alt="cloudy day"
           class="weather_icon"
-          width="30px" height="30px"
+          width="50px" height="50px"
         />
         <p class="card-text">
           Wind: <span id="wind-speed">${Math.round(
