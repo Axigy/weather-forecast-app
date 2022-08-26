@@ -1,29 +1,34 @@
 // Search city form
 function giveDates(response) {
+  celsiusTemperature = response.data.main.temp;
+
   // main temperature
   minCelsiusTemoerature = response.data.main.temp_min;
   maxCelsiusTemperature = response.data.main.temp_max;
-  celsiusTemperature = response.data.main.temp;
   let nowTemp = document.querySelector("#temp-value");
   nowTemp.innerHTML = Math.round(response.data.main.temp);
 
   // write full location
   let currLocation = document.querySelector("#main-location");
   currLocation.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+
   // change weather icon
   let descIcon = document.querySelector(".weather_icon");
   descIcon.src = `image/${response.data.weather[0].icon}.svg`;
+
   // change wind speed and humidity
   let windSpeed = document.querySelector("#wind-speed");
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = response.data.main.humidity;
+
   // add max and min temp
   let maxTemp = document.querySelector("#max-temp");
   maxTemp.innerHTML = Math.round(response.data.main.temp_max);
   let minTemp = document.querySelector("#min-temp");
   minTemp.innerHTML = Math.round(response.data.main.temp_min);
 }
+// Hourly forecast
 
 function formatHours(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -61,7 +66,7 @@ function givesHourlyForecast(response) {
       <img src="image/${
         hour.weather[0].icon
       }.svg" alt="" class="weatherIcon" width="30px" height="30px" />
-      <span class="temp-max">${Math.round(
+      <span class="temperature">${Math.round(
         hour.main.temp_max
       )}</span></span><span class="degreesIcon">°C</span>
       </li>
@@ -103,6 +108,8 @@ function showPosition(position) {
   let keyApi = "920ae924ef286b04c010bf50d5e7861f"; // add API
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&APPID=`;
   axios.get(`${apiUrl}${keyApi}`).then(giveDates);
+  const hourlyApi = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=`;
+  axios.get(`${hourlyApi}${apiKey}`).then(givesHourlyForecast);
 }
 function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);
@@ -143,8 +150,6 @@ if (minuts < 10) {
 let currentDate = document.querySelector("#now-date");
 currentDate.innerHTML = `${day}, ${month} ${date}, ${hour}:${minuts}`;
 
-// Hourly forecast
-
 // Switch metrics
 
 function displayFahrenheit(e) {
@@ -164,12 +169,10 @@ function displayFahrenheit(e) {
   Array.from(celIcons).forEach((celIcon) => {
     celIcon.innerHTML = "°F";
   });
-
-  let hourlyElement = document.querySelectorAll(".temp-max");
+  let hourlyElement = document.querySelectorAll(".temperature");
   Array.from(hourlyElement).forEach((hourlyDegree, index) => {
     hourlyDegree.innerHTML = Math.round((hourlyTemp[index] * 9) / 5 + 32);
   });
-  console.log(hourlyElement);
 }
 
 function displayCelsius(e) {
@@ -186,7 +189,6 @@ function displayCelsius(e) {
   Array.from(fahIcons).forEach((fahIcon) => {
     fahIcon.innerHTML = "°C";
   });
-
   let hourlyElement = Array.from(document.querySelectorAll(".temp-max"));
   console.log(hourlyElement);
   hourlyElement.forEach((temperature, index) => {
