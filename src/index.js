@@ -45,6 +45,13 @@ function givesHourlyForecast(response) {
   let hoursForecast = response.data.list;
   let hoursForecastHTML = `<ul class="hourlyForecastTable">`;
   console.log(hoursForecast);
+
+  response.data.list.forEach((element) => {
+    if (hourlyTemp.length < 5) {
+      hourlyTemp.push(element.main.temp);
+    }
+  });
+
   hoursForecast.forEach(function (hour, index) {
     if (index < 5) {
       hoursForecastHTML =
@@ -56,7 +63,7 @@ function givesHourlyForecast(response) {
       }.svg" alt="" class="weatherIcon" width="30px" height="30px" />
       <span class="temp-max">${Math.round(
         hour.main.temp_max
-      )}</span></span><span class="degrees">°C</span>
+      )}</span></span><span class="degreesIcon">°C</span>
       </li>
       `;
     }
@@ -157,6 +164,12 @@ function displayFahrenheit(e) {
   Array.from(celIcons).forEach((celIcon) => {
     celIcon.innerHTML = "°F";
   });
+
+  let hourlyElement = document.querySelectorAll(".temp-max");
+  Array.from(hourlyElement).forEach((hourlyDegree, index) => {
+    hourlyDegree.innerHTML = Math.round((hourlyTemp[index] * 9) / 5 + 32);
+  });
+  console.log(hourlyElement);
 }
 
 function displayCelsius(e) {
@@ -173,8 +186,14 @@ function displayCelsius(e) {
   Array.from(fahIcons).forEach((fahIcon) => {
     fahIcon.innerHTML = "°C";
   });
-}
 
+  let hourlyElement = Array.from(document.querySelectorAll(".temp-max"));
+  console.log(hourlyElement);
+  hourlyElement.forEach((temperature, index) => {
+    temperature.innerHTML = Math.round(hourlyTemp[index]);
+  });
+}
+let hourlyTemp = [];
 let minCelsiusTemoerature = null;
 let maxCelsiusTemperature = null;
 let celsiusTemperature = null;
