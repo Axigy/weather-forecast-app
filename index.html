@@ -18,107 +18,109 @@
     />
     <link rel="stylesheet" href="src/style.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-    <title>Weather Forecast</title>
+    <title>Weather Forecast app by Axigy</title>
   </head>
   <body>
-    
     <div class="container">
-      <section class="attic">
-        <a href="#" id="change-to-celsius" class="active"> °C </a> 
-        <a href="#" id="change-to-fahrenheit"> °F </a>
-        <a href="#" id="location-btn"><img src="image/navigation_direction_icon.png" alt="geolocation" id="current-location" ></a>
-     </section>
- 
-      <form class="search_form" id="search-city-form">
-        <input
-          type="text"
-          placeholder="Enter your city"
-          style="width: 70%"
-          id="input-city"
-          autocomplete="on"
-          value="Poznan"
-        />
-        <input type="submit" value="Search" class="search_button" />
-      </form>
+      <div class="row attic">
+        <div class="col-md-3">
+          <a href="#" id="change-to-celsius" class="active"> °C </a>
+          <a href="#" id="change-to-fahrenheit"> °F </a>
+          <a href="#" id="location-btn"
+            ><img
+              src="image/navigation_direction_icon.png"
+              alt="geolocation"
+              id="current-location"
+          /></a>
+        </div>
+        <div class="col-md-9">
+          <form class="search_form" id="search-city-form">
+            <input
+              type="text"
+              placeholder="Enter your city"
+              style="width: 70%"
+              id="input-city"
+              autocomplete="on"
+              value="Poznan"
+            />
+            <input type="submit" value="Search" class="search_button" />
+          </form>
+        </div>
+      </div>
 
       <div
         class="btn-group change_days"
         role="group"
         aria-label="Basic outlined example"
       >
-        <a href="index.html" class="btn btn-outline-primary active" >
-          Today
-        </a>
-        <a
-          href="threeDays.html"
-          class="btn btn-outline-primary"
-        >
-          3 days
-        </a>
-        <a
-          href="sevenDays.html"
-          class="btn btn-outline-primary"
-        >
-           days
-        </a>
-        
+        <a href="index.html" class="btn btn-outline-primary active"> Today </a>
+        <a href="threeDays.html" class="btn btn-outline-primary"> 3 days </a>
+        <a href="sevenDays.html" class="btn btn-outline-primary"> 7 days </a>
       </div>
 
       <section class="main_table">
         <h1 class="city" id="main-location">Write your location</h1>
         <span class="country" id="country-id"></span>
-        
+
         <div class="today-forecast" id="today-table">
           <div class="card border-secondary mb-6">
             <div class="card-header" id="now-date">Wednesday</div>
             <div class="card-body text-secondary">
               <div class="row">
-                <div class="col-sm-4">
-              <h5 class="card-title currentTemp" >
-                <span id="temp-value">0</span>
-                <span class="degreesIcon">°C</span>
-              </h5>
-              
-              <p class="card-text">
-                Wind: <span id="wind-speed">6</span> m/H <br />
-                Humidity: <span id="humidity">40</span>%
-              </p>
-              
-            </div>
-            <div class="col-sm-4">
-              <img src="image/50d.svg" alt="" class="weather_icon" width="80px" height="80px"/>
-              <ul class="todayTable">
-               <li>
-                  max temp <span id="max-temp">0</span> <span class="degreesIcon">°C</span>
-                </li>
-                <li>
-                  min temp <span id="min-temp">0</span><span class="degreesIcon"> °C </span>
-                </li>
-              </ul>
-            </div>
-            <div class="col-sm-4" id="hourly-forecast">
-             
-            </ul> 
-            </div>
-          </div>
-            </div>
+                <div class="col">
+                  <h5 class="card-title currentTemp">
+                    <span id="temp-value">0</span>
+                    <span class="degreesIcon">°C</span>
+                  </h5>
 
-            
+                  <div class="card-text col">
+                    Wind: <span id="wind-speed">6</span> m/H <br />
+                    Humidity: <span id="humidity">40</span>%
+                  </div>
+                </div>
+                <div class="col">
+                  <img
+                    src="image/50d.svg"
+                    alt=""
+                    class="weather_icon"
+                    width="80px"
+                    height="80px"
+                  />
+                  <ul class="todayTable">
+                    <li>
+                      max temp <span id="max-temp">0</span>
+                      <span class="degreesIcon">°C</span>
+                    </li>
+                    <li>
+                      min temp <span id="min-temp">0</span
+                      ><span class="degreesIcon"> °C </span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-4" id="hourly-forecast"></div>
+              </div>
             </div>
           </div>
         </div>
-        
-        </div>  
       </section>
       <small>
         <p class="footer-text">Open-source project by Axigy</p>
-        <a href="https://github.com/Axigy/weather-forecast-app" target="_blank" ">
-          <img src="image/blue_github_icon.png" alt="github-icon" class="social-icon">
+        <a href="https://github.com/Axigy/weather-forecast-app" target="_blank">
+          <img
+            src="image/blue_github_icon.png"
+            alt="github-icon"
+            class="social-icon"
+          />
         </a>
-        <a href="https://www.linkedin.com/in/anhelina-kruptseva/" target="_blank"><img src="image/linkedin_social_icon.png" alt="linkedin-icon" class="social-icon"></a>
+        <a
+          href="https://www.linkedin.com/in/anhelina-kruptseva/"
+          target="_blank"
+          ><img
+            src="image/linkedin_social_icon.png"
+            alt="linkedin-icon"
+            class="social-icon"
+        /></a>
       </small>
-      
     </div>
 
     <script src="src/index.js"></script>

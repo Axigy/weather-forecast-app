@@ -28,7 +28,7 @@ function displayForecast(response) {
       maxCelsiusTemperature.push(data.temp.max);
       forecastHTML =
         forecastHTML +
-        `<div class="card border-secondary mb-3" style="max-width: 18rem">
+        `<div class="card border-secondary mb-3 mr-auto ml-auto mr-sm-2 ml-sm-2" style="max-width: 18rem">
       <div class="card-header weather-date" id="now-date">${formatHours(
         data.dt
       )}</div>

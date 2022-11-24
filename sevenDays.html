@@ -22,24 +22,31 @@
     <title>Weather Forecast</title>
   </head>
   <body>
-   
-
-    <div class="containerSeven">
-      <section class="attic">
-        <a href="#" id="change-to-celsius" class="active"> °C </a> 
-        <a href="#" id="change-to-fahrenheit"> °F </a>
-        <a href="#" id="location-btn"><img src="image/navigation_direction_icon.png" alt="geolocation" id="current-location" ></a>
-     </section>
-      <form class="search_form" id="search-city-form">
-        <input
-          type="text"
-          placeholder="Enter your city"
-          style="width: 70%"
-          id="input-city"
-          value="Poznan"
-        />
-        <input type="submit" value="Search" class="search_button" />
-      </form>
+    <div class="container">
+      <div class="row attic">
+        <div class="col md-3">
+          <a href="#" id="change-to-celsius" class="active"> °C </a>
+          <a href="#" id="change-to-fahrenheit"> °F </a>
+          <a href="#" id="location-btn"
+            ><img
+              src="image/navigation_direction_icon.png"
+              alt="geolocation"
+              id="current-location"
+          /></a>
+        </div>
+        <div class="col md-7">
+          <form class="search_form" id="search-city-form">
+            <input
+              type="text"
+              placeholder="Enter your city"
+              style="width: 70%"
+              id="input-city"
+              value="Poznan"
+            />
+            <input type="submit" value="Search" class="search_button" />
+          </form>
+        </div>
+      </div>
 
       <div
         class="btn-group change_days"
@@ -49,35 +56,35 @@
         <a href="index.html" class="btn btn-outline-primary" id="today-btn">
           Today
         </a>
-        <a
-          href="threeDays.html"
-          class="btn btn-outline-primary"
-        >
-          3 days
-      </a>
-        <a href="sevenDays.html"
-          class="btn btn-outline-primary active"
-        
-        >
+        <a href="threeDays.html" class="btn btn-outline-primary"> 3 days </a>
+        <a href="sevenDays.html" class="btn btn-outline-primary active">
           7 days
-    </a>
-        
+        </a>
       </div>
 
       <section class="main_table">
         <h1 class="city" id="main-location">Poznań, PL</h1>
-        
-        
-        <div class="card-group seven_table" id="forecast"></div>  
+
+        <div class="card-group seven_table" id="forecast"></div>
       </section>
       <footer>
         <p class="footer-text">Open-source project by Axigy</p>
-        <a href="https://github.com/Axigy/weather-forecast-app" target="_blank" ">
-          <img src="image/blue_github_icon.png" alt="github-icon" class="social-icon">
+        <a href="https://github.com/Axigy/weather-forecast-app" target="_blank">
+          <img
+            src="image/blue_github_icon.png"
+            alt="github-icon"
+            class="social-icon"
+          />
         </a>
-        <a href="https://www.linkedin.com/in/anhelina-kruptseva/" target="_blank"><img src="image/linkedin_social_icon.png" alt="linkedin-icon" class="social-icon"></a>
+        <a
+          href="https://www.linkedin.com/in/anhelina-kruptseva/"
+          target="_blank"
+          ><img
+            src="image/linkedin_social_icon.png"
+            alt="linkedin-icon"
+            class="social-icon"
+        /></a>
       </footer>
-      
     </div>
 
     <script src="src/sevendays.js"></script>
