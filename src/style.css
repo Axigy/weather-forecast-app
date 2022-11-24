@@ -1,5 +1,7 @@
 body,
 html {
+  width: 100%;
+  height: 100%;
   font-family: "Cinzel", serif;
   text-align: center;
   background-image: url("../image/leaves_background.jpg");
